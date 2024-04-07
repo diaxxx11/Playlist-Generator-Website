@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Recommender</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #9ed8db; /* Default light mode background color (Crystal Gray) */
+            transition: background-color 0.3s ease; /* Smooth transition for background color change */
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 50px;
+        }
+        h1, p {
+            color: #333; /* Black text color */
+        }
+        .dark-mode h1, .dark-mode p {
+            color: #fff; /* White text color in dark mode */
+        }
+        .spotify-button {
+            background-color: #1db954; /* Spotify green color */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-transform: uppercase;
+            margin-top: 20px;
+        }
+        .spotify-button:hover {
+            background-color: #168f3c; /* Darker shade of Spotify green on hover */
+        }
+        .apple-music-button {
+            background-color: #ff2e52; /* Apple Music color */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-transform: uppercase;
+            margin-top: 20px;
+        }
+        .apple-music-button:hover {
+            background-color: #e60045; /* Darker shade of Apple Music color on hover */
+        }
+        .toggle-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+        .toggle-label {
+            font-size: 14px;
+            color: #333;
+            margin-right: 10px;
+        }
+        .toggle {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 40px;
+            height: 20px;
+            background-color: #ccc;
+            border-radius: 20px;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+        }
+        .toggle::before {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background-color: white;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease;
+        }
+        .toggle.dark::before {
+            transform: translateX(20px);
+        }
+        .toggle.light {
+            background-color: #fff;
+        }
+        .toggle.light::before {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Playlist Recommender</h1>
+        <p>Login with your Spotify or Apple Music account to get personalized playlist recommendations.</p>
+        <form action="/login-spotify" method="get">
+            <button class="spotify-button">Login with Spotify</button>
+        </form>
+        <form action="/login-apple-music" method="get"> <!-- Form for Apple Music login -->
+            <button class="apple-music-button">Login with Apple Music</button>
+        </form>
+    </div>
+    <div class="toggle-container">
+        <label class="toggle-label">Dark Mode</label>
+        <input type="checkbox" class="toggle" id="dark-mode-toggle">
+    </div>
+
+    <script>
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+        darkModeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('dark-mode'); /* Apply dark mode */
+                document.body.style.backgroundColor = '#3F565F'; /* Dark mode background color (Forest River) */
+            } else {
+                document.body.classList.remove('dark-mode'); /* Remove dark mode */
+                document.body.style.backgroundColor = '#7F9DA7'; /* Light mode background color (Crystal Gray) */
+            }
+        });
+    </script>
+</body>
+</html>
